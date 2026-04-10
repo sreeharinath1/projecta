@@ -16,3 +16,9 @@ jobs:
     needs: gen-matrix
     steps:
       - run: echo "deployed"
+  cancel:
+    runs-on: ubuntu-latest
+    needs: gen-matrix
+    steps:
+      - run: echo "deployed"
+      - run: echo "deployed"
