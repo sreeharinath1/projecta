@@ -22,7 +22,10 @@ on:
         description: "how many count"
         type: number
         required: true
-
+      env:
+        description: "Select env"
+        type: environment
+        required: true
 
 jobs:
   build:
