@@ -21,3 +21,9 @@ jobs:
           if-no-files-found: error
           overwrite: true
           compression-level: 7
+      - name: download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: testapp
+          path: output.txt
+      - run: cat output.txt
