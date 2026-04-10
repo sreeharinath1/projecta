@@ -5,9 +5,12 @@ on:
       - "!feature/*"
       - "commit.txt"
       - "*.ts"
+    #paths-ignore:
+      #b- "commit"
 jobs:
   build:
     runs-on: ubuntu-latest
+    # runs-on: [self-hosted, linux, x64, production]
     steps:
       - uses: actions/checkout@v4
       - name: Run a Script

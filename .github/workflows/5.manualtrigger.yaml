@@ -1,0 +1,9 @@
+name: e.manualtriggger
+on:
+  workflow_dispatch:
+    inputs:
+      environments:
+        description: "Select env"
+        type: choice
+        required: true
+        values: [prod, dev, stage]
