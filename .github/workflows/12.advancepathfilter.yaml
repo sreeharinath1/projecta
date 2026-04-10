@@ -22,8 +22,8 @@ jobs:
             backend:
               - "backend/**"
     outputs:
-      frontend: steps.filter.outputs.frontend
-      backend: steps.filter.outputs.backend
+      frontend: ${{steps.filter.outputs.frontend}}
+      backend: ${{steps.filter.outputs.backend}}
   build:
     needs: detech-changes
     if: needs.detech-changes.outputs.frontend == 'true'
