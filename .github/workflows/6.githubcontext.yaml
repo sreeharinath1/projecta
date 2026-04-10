@@ -1,4 +1,6 @@
 name: f.githubcontext
+env:
+  app: prod
 on:
   workflow_dispatch:
     inputs:
@@ -42,3 +44,5 @@ jobs:
       - name: print job context
         run: |
           echo "job ${{ job.status}}"
+      - name: print env
+        run: echo ${{ env.app}}
