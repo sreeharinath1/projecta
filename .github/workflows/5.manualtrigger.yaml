@@ -7,3 +7,9 @@ on:
         type: choice
         required: true
         values: [prod, dev, stage]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ran a Script
+        run: echo "iam running"
