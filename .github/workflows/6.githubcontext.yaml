@@ -30,3 +30,5 @@ jobs:
         run: echo ${{github.run_id}}
       - name: print a run_number
         run: echo ${{github.run_number}}
+      - name: print a server url
+        run: echo ${{github.server_url}}
