@@ -37,5 +37,5 @@ jobs:
           echo "Runner Os: ${{runner.os}}"
           echo "Runner arch: ${{runner.arch}}"
           echo "runner name: ${{runner.name}}"
-          echo "runner tool cache: ${{runner.tool_cache}}
-          echo "runner debug: ${{runner.debug}}
+          echo "runner tool cache: ${{runner.tool_cache}}"
+          echo "runner debug: ${{runner.debug}"
