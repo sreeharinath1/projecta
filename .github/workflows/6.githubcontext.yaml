@@ -32,3 +32,10 @@ jobs:
         run: echo ${{github.run_number}}
       - name: print a server url
         run: echo ${{github.server_url}}
+      - name: printing runner context
+        run: |
+          echo "Runner Os: ${{runner.os}}"
+          echo "Runner arch: ${{runner.arch}}"
+          echo "runner name: ${{runner.name}}"
+          echo "runner tool cache: ${{runner.tool_cache}}
+          echo "runner debug: ${{runner.debug}}
