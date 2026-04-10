@@ -21,5 +21,5 @@ jobs:
       matrix: ${{fromJSON(needs.generate_matrix.outputs.matrix)}}
     runs-on: ubuntu-latest
     steps:
-      - run: cat matrix
+      - run: cat $matrix
       - run: echo "Deploying to ${{matrix.env}}"
