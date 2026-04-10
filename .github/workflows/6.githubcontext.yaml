@@ -19,4 +19,4 @@ jobs:
       - name: Print a branch
         run: echo ${{ github.ref}}
       - name: print a event
-        run: echo ${{github.event}}
+        run: echo ${{github.event_name}}
