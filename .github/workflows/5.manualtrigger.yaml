@@ -11,7 +11,7 @@ on:
         description: "Select TEST"
         type: boolean
         required: false
-        default: false
+        default: true
 
 jobs:
   build:
