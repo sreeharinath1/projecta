@@ -39,4 +39,6 @@ jobs:
           echo "Runner Name: ${{ runner.name }}"
           echo "Runner Tool Cache: ${{ runner.tool_cache }}"
           echo "Runner Debug: ${{ runner.debug }}"
-
+      - name: print job context
+        run: |
+          echo "job ? ${{ job.status}}
