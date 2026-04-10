@@ -12,7 +12,7 @@ jobs:
     steps:
       - id: set-matrix
         run: |
-          echo 'matrix={"include":[{"env":"dev"},{"env":"staging"}]}'
+          echo 'matrix={"include":[{"env":"dev"},{"env":"staging"}]}' >> $GITHUB_OUTPUT
     outputs:
       matrix: ${{steps.set-matrix.outputs.matrix}}
   deploy:
