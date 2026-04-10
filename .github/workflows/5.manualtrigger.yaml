@@ -18,6 +18,10 @@ on:
         type: string
         required: true
         default: "sree"
+      replicas:
+        description: "how many count"
+        type: number
+        required: true
 
 
 jobs:
