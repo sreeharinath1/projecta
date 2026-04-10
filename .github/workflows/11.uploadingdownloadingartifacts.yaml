@@ -2,9 +2,10 @@ name: k.updownartifacts
 on:
   workflow_dispatch:
     inputs:
-      description: "Enter a value"
-      type: choice
-      options: [dev, stage]
+      env:
+        description: "Enter a env"
+        type: choice
+        options: [dev, stage]
 jobs:
   build:
     runs-on: ubuntu-latest
