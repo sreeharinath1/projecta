@@ -1,4 +1,4 @@
-name: j.dynamicmatrices
+name: i.dynamicmatrices
 on:
   workflow_dispatch:
     inputs:

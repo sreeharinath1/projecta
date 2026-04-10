@@ -1,4 +1,4 @@
-name: i.includeexcludematrix
+name: h.includeexcludematrix
 on:
   workflow_dispatch:
     inputs:
