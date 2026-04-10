@@ -2,9 +2,10 @@ name: i.includeexcludematrix
 on:
   workflow_dispatch:
     inputs:
-      description: " Enter env"
-      type: choice
-      options: [dev, stage]
+      env:
+        description: " Enter env"
+        type: choice
+        options: [dev, stage]
 jobs:
   build:
     runs-on: ${{matrix.os}}
