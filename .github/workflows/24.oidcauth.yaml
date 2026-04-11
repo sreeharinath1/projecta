@@ -16,3 +16,6 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::748435451822:role/usergithub
           aws-region: ap-south-1
+      - name: List EC2 instances
+        run: aws ec2 describe-instances --region ap-south-1
+
