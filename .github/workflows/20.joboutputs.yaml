@@ -1,30 +1,49 @@
-name: t.joboutputs
+name: github-special-files-demo
+
 on:
   workflow_dispatch:
     inputs:
       env:
-        description: "Enter a Key"
+        description: "Choose environment"
         type: choice
         options:
           - dev
           - stage
+
 jobs:
-  build:
+  demo:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{steps.get-version.outputs.version}}
-      artifact-name: ${{steps.set-name.outputs.name}}
+
     steps:
-      - id: get-version
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1. Set environment variable for later steps
+      - name: Set ENV variable
+        run: echo "PROFILE=${{ github.event.inputs.env }}" >> $GITHUB_ENV
+
+      # 2. Add custom path
+      - name: Add custom bin to PATH
+        run: echo "/my/bin" >> $GITHUB_PATH
+
+      # 3. Create job output
+      - name: Generate version
+        id: version
+        run: echo "artifact_version=1.0.${GITHUB_RUN_NUMBER}" >> $GITHUB_OUTPUT
+
+      # 4. Add summary content
+      - name: Add summary
+        run: echo "## Workflow Summary: Running in $PROFILE" >> $GITHUB_STEP_SUMMARY
+
+      # 5. Use ENV and PATH
+      - name: Use ENV and PATH
         run: |
-          echo "VERSION=${{github.event.inputs.env}}"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-      - id: set-name
-        run: echo "name=my-app-${{github.sha}}" >> $GITHUB_OUTPUT
+          echo "Profile is $PROFILE"
+          echo "PATH is $PATH"
+
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    needs: demo
     steps:
-      - run: |
-          echo "Deploying version: ${{needs.build.outputs.version}}"
-          echo "Artifact-name: ${{needs.build.outputs.artifact-name}}"
+      - name: Use job output
+        run: echo "Deploying artifact version ${{ needs.demo.outputs.artifact_version }}"
