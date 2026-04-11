@@ -1,4 +1,4 @@
-name: a.basic structure flow
+name: a.basicstructureflow
 on:
   push:
     branches: [ main ]
