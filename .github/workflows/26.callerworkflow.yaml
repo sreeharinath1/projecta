@@ -6,8 +6,9 @@ on:
         description: "Target environment"
         required: true
         default: dev
+
 jobs:
   call-ci:
     uses: sreeharinath1/github_actions/.github/workflows/25.reusableworkflow.yaml@main
     with:
-      environment: prod
+      environment: ${{ github.event.inputs.environment }}
