@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b9485b8-e51f-4072-9886-c466ca71d743" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/16.postgresdbservice.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/DataSeeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/controller/EmployeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/controller/EmployeeRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/repository/EmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/java/com/example/demo/service/EmployeeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/templates/employees/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/templates/employees/form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/templates/employees/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/main/resources/templates/error.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/java/com/example/demo/controller/EmployeeControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/java/com/example/demo/controller/EmployeeRestControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/java/com/example/demo/integration/EmployeeApiIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/java/com/example/demo/integration/EmployeeRepositoryIT.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/java/com/example/demo/service/EmployeeServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/springboot-addeddb/src/test/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/16.postgresdbservice.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/16.postgresdbservice.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
