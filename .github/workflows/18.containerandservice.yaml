@@ -24,7 +24,7 @@ jobs:
           POSTGRES_DB: testdb
           POSTGRES_USER: testuser
           POSTGRES_PASS: testpass
-        optionals: >-
+        options: >-
           --health-cmd="pg_isready -U testuser"
           --health-interval=10s
           --health-timeout=5s
