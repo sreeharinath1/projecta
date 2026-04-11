@@ -6,11 +6,11 @@ on:
         required: false
         type: string
         default: '17'
-      environments:
+      environment:
         required: true
         type: string
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Building for ${{ inputs.environments}}"
+      - run: echo "Building for ${{ inputs.environment}}"
