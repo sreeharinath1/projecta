@@ -30,3 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "iam running"
+
+        # note use push only for realtime
+        # get proper result from push
+        # current and prev commit compare and works
