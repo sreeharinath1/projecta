@@ -35,11 +35,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Contains check: ${{ contains('hello world','world'}}"
-          echo "Startswith: ${{ startWith('hello','he')}}"
+          echo "Contains check: ${{ contains('hello world','world')}}"
+          echo "Startswith: ${{ startsWith('hello','he')}}"
           echo "endswith: ${{endsWith('hello','lo')}}"
           echo "hasFiles: ${{hashFiles('**/*.java')}}"
           echo "toJSON: ${{toJSON(github)}}"
           echo "FromJson: ${{ fromJSON('{"key":"value"}')}}"
-          echo "Join: ${{join(github.event.inputs.*,','}}"
-          echo "Format: ${{format('version {0}.{1},1,2)}}"
+          echo "Join: ${{join(github.event.inputs.*,',')}}"
+          echo "Format: ${{format('version {0}.{1}',1,2)}}"
