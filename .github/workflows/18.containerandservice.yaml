@@ -18,6 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: mvn clean verify -Dspring.profiles.active=test
+        working-directory: springboot-addeddb-fixed
     services:
       postgres:
         image: postgres:15
