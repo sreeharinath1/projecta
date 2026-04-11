@@ -34,3 +34,4 @@ jobs:
           cache: maven
       - name: Run a Integration test
         run: mvn clean verify
+        working-directory: springboot-addeddb
