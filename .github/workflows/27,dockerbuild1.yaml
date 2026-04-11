@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build docker Image
-      - run: echoi "docker build -t my-app:${{github.sha}} ."
+        run: echoi "docker build -t my-app:${{github.sha}} ."
