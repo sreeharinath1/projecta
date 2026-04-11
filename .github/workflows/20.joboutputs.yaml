@@ -1,4 +1,4 @@
-name: github-special-files-demo
+name: t.joboutputs
 
 on:
   workflow_dispatch:
