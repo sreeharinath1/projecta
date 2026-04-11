@@ -1,0 +1,34 @@
+name: r.containerservice
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Enter a Key"
+        type: choice
+        options:
+          - dev
+          - stage
+jobs:
+  main:
+    container:
+      image: maven:3.9.6-eclipse-temurin-17
+      env:
+        MAVEN_OPTS: "-Xmx512m"
+      steps:
+        - uses: actions/checkout@v4
+        - run: mvn clean verify -Dspring.profiles.active=test
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: testdb
+          POSTGRES_USER: testuser
+          POSTGRES_PASS: testpass
+        optionals: >-
+          --health-cmd="pg_isready -U testuser"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 5432:5432
+
