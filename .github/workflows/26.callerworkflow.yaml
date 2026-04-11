@@ -10,4 +10,4 @@ jobs:
   call-ci:
     uses: sreeharinath1/github_actions/.github/workflows/25.reusableworkflow.yaml@main
     with:
-      java-version: 17
+      environment: prod
