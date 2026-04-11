@@ -9,3 +9,5 @@ jobs:
     steps:
       - name: content permission
         uses: actions/checkout@v4
+      - name: list repo file
+        run: ls -la
