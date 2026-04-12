@@ -6,7 +6,7 @@ on:
       - "release-*"
 jobs:
   build-deploy:
-    runs-on: actions/checkout@v4
+    runs-on: ubuntu-latest
     steps:
       - name: Get tag ref
         run: echo "tag is ${{gihub.ref}}"
