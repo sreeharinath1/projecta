@@ -36,23 +36,16 @@ jobs:
           tags: |
             type=sha,prefix=sha-
             type=ref,event=branch
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
       - name: Build image
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: false
-          tags: ${{ steps.meta.outputs.tags}}
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/testhub:latest
           labels: ${{ steps.meta.outputs.labels}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: Login to ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-      - name: Push to ECR
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry}}
-          ECR_REPOSITORY: ${{ steps.login-ecr.outputs.repository}}
-          IMAGE_TAG: ${{ steps.meta.outputs.tags}}
-        run: |
-          docker tag sreeharinathpdev/testhub:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
