@@ -1,4 +1,4 @@
-name: zh.junitworkflow.yamk
+name: zh.junitworkflow
 on:
   workflow_dispatch:
 jobs:
