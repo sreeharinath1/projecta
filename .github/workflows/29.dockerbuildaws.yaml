@@ -1,0 +1,54 @@
+name: zc.dockerbuildaws
+# AWS need OIDC + Iam role
+on:
+  workflow_dispatch:
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+      - name: Package
+        run: mvn package -DskipTests
+        working-directory: springboot-demo
+      - name: AWS configuration
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::748435451822:role/usergithub
+          aws-region: ap-south-1
+      - name: List ec2 instances
+        run: |
+          aws ec2 describe-instances --region ap-south-1
+      - name: Setup docker buiildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: sreeharinathpdev/testhub
+          tags: |
+            type=sha,prefix=sha-
+            type=ref,event=branch
+      - name: Build image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: ${{ steps.meta.outputs.tags}}
+          labels: ${{ steps.meta.outputs.labels}}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Push to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry}}
+          ECR_REPOSITORY: ${{ steps.login-ecr.outputs.repository}}
+          IMAGE_TAG: ${{ steps.meta.outputs.tags}}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
