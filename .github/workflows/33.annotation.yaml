@@ -15,3 +15,4 @@ jobs:
            echo "::warning file=config.json::Config file missing, using defaults"
          fi
            echo "::notice::Validation completed successfully"
+           echo "::debug::Validation completed successfully"
