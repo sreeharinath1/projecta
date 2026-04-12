@@ -27,7 +27,7 @@ jobs:
       - name: Publish Integration Tests
         uses: mikepenz/action-junit-report@v4
         with:
-          report_paths: springboot-demo/target/failsafe-report/*.xml
+          report_paths: springboot-demo/target/failsafe-reports/*.xml
           check_name: "Integration Test"
           include_passed: true
       - name: Upload artifacts
