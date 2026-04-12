@@ -1,0 +1,17 @@
+name: zi.repodispatch
+on:
+  repository_dispatch:
+    types:
+      - deploy
+      - rollback
+      - smoke-test
+jobs:
+  handle_dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read Payload
+        run: |
+          echo "Event Type: ${{ github.event.action}}"
+          echo "Env: ${{ github.event.client_payload.environment }}
+          echo "version: ${{ github.event.client_payload.version }}
+          
