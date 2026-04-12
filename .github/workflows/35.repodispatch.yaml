@@ -12,6 +12,6 @@ jobs:
       - name: Read Payload
         run: |
           echo "Event Type: ${{ github.event.action}}"
-          echo "Env: ${{ github.event.client_payload.environment }}
-          echo "version: ${{ github.event.client_payload.version }}
+          echo "Env: ${{ github.event.client_payload.environment }}"
+          echo "version: ${{ github.event.client_payload.version }}"
           
