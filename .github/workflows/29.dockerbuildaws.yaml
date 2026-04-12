@@ -1,5 +1,8 @@
 name: zc.dockerbuildaws
-# AWS need OIDC + Iam role
+# AWS need OIDC + Iam role nned permissions:
+permissions:
+  id_token: write
+
 on:
   workflow_dispatch:
 jobs:
