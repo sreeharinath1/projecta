@@ -13,7 +13,7 @@ jobs:
           cache: maven
       - run: mvn clean test
         working-directory: springboot-demo
-  pack:
+  package:
     runs-on: ubuntu-latest
     needs: test
     steps:
