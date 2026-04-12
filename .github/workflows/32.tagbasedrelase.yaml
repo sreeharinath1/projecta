@@ -11,7 +11,7 @@ jobs:
       - name: Get tag ref
         run: echo " tag:${{gihub.ref}} "
       - name: Get tag name rec
-        run: echo "tag:${{github.ref_name}}
+        run: echo "tag:${{github.ref_name}}"
       - name: Strip V prefix
         run: |
           VERSION=${{github.ref_name}}
