@@ -1,24 +1,34 @@
 name: zf.tagbased
+
 on:
   push:
     tags:
       - "v*"
       - "release-*"
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
     steps:
+      - uses: actions/checkout@v4
+
       - name: Get tag ref
-        run: echo "tag is ${{github.ref}}"
-      - name: Get tag name rec
-        run: echo "tag is ${{github.ref_name}}"
-      - name: Strip V prefix
+        run: echo "tag ref is ${{ github.ref }}"
+
+      - name: Get tag name
+        run: echo "tag name is ${{ github.ref_name }}"
+
+      - name: Strip v prefix
+        id: version
         run: |
-          VERSION=${{github.ref_name}}
+          VERSION=${{ github.ref_name }}
           VERSION=${VERSION#v}
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
   deploy:
     needs: build-deploy
     runs-on: ubuntu-latest
     steps:
-      - run: echo "deploying version is $VERSION"
+      - run: echo "deploying version is ${{ needs.build-deploy.outputs.version }}"
