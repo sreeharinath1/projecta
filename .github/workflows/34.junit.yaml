@@ -52,3 +52,13 @@ jobs:
             springboot-demo/target/surefire-reports
             springboot-demo/target/failsafe-reports
             springboot-demo/target/site/jacoco
+      - name: Generate test summary
+        if: always()
+        run: |
+          echo "## Test Results Summary 🧪" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Tests | $TOTAL |" >> $GITHUB_STEP_SUMMARY
+          echo "| Passed | $PASSED |" >> $GITHUB_STEP_SUMMARY
+          echo "| Failed | $FAILED |" >> $GITHUB_STEP_SUMMARY
