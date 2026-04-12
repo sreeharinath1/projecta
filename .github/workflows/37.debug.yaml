@@ -1,7 +1,11 @@
 name: zk.debug
 on:
   workflow_dispatch:
-
+    inputs:
+      debug:
+        description: 'Enable debug logs'
+        required: false
+        default: 'false'
 
 jobs:
   debug-job:
