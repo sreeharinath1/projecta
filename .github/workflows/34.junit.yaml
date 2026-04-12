@@ -21,10 +21,14 @@ jobs:
         uses: mikepenz/action-junit-report@v4
         if: always()
         with:
-          report_paths: |
-            springboot-demo/target/surefire-reports/*.xml
-            springboot-demo/target/failsafe-reports/*.xml
+          report_paths: springboot-demo/target/surefire-reports/*.xml
           check_name: "Unit Test Results"
+          include_passed: true
+      - name: Publish Integration Tests
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: springboot-demo/target/failsafe-report/*.xml
+          check_name: "Integration Test"
           include_passed: true
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
