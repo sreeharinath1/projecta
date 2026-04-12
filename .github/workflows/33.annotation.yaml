@@ -1,0 +1,18 @@
+name: zg.annotations
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate environment
+        run: |
+         if [ -z "$API_KEY" ]; then
+           echo "::error::API_KEY environment variable is not set"
+           exit 1
+         fi
+
+         if [ ! -f "config.json" ]; then
+           echo "::warning file=config.json::Config file missing, using defaults"
+         fi
+           echo "::notice::Validation completed successfully"
