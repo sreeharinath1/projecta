@@ -1,43 +1,45 @@
 name: zm.snyk
 on:
   workflow_dispatch:
+
 jobs:
   snyk-scan:
     runs-on: ubuntu-latest
     permissions:
-      security-events: write # Req for SARIF upload
+      security-events: write  # Required for SARIF upload to GitHub Security tab
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup jdk 17
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: temurin
+
       - name: Build Project
         run: mvn clean package -DskipTests
         working-directory: springboot-demo
-      - name: Run Snyk to check vulnerabilities
-        uses: snyk/actions/maven@master
-        continue-on-error: true #dont fail here upload sarif first
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Run Snyk vulnerability scan
+        continue-on-error: true  # Don't fail here — upload SARIF first
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk.sarif --severity-threshold=high
+        run: snyk test --maven-aggregate-project --sarif-file-output=snyk.sarif --severity-threshold=high
+        working-directory: springboot-demo  # run: supports working-directory
 
-      - name: Upload sarif to github securty tab
+      - name: Upload SARIF to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
+        if: always()  # Upload even if scan found vulnerabilities
         with:
           sarif_file: springboot-demo/snyk.sarif
-      - name: Monitor with snyk
-        uses: snyk/actions/maven@master
+
+      - name: Monitor project with Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
-          args: --file=springboot-demo/pom.xml
-
-
-
-
+        run: snyk monitor --maven-aggregate-project
+        working-directory: springboot-demo
