@@ -1,0 +1,41 @@
+name: zm.snyk
+on:
+  workflow_dispatch:
+jobs:
+  snyk-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write # Req for SARIF upload
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup jdk 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+      - name: Build Project
+        run: mvn clean package -DskipTests
+        working-directory: springboot-demo
+      - name: Run Snyk to check vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: true #dont fail here upload sarif first
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif --severity-threshold=high
+
+      - name: Upload sarif to github securty tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: springboot-demo/snyk.sarif
+      - name: Monitor with snyk
+        uses: snyk/actions/maven@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: monitor
+        working-directory: springboot-demo
+
+
+
+
