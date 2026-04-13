@@ -1,0 +1,114 @@
+name: zl.basicscanning
+on:
+  workflow_dispatch:
+
+jobs:
+
+  # ============================================================
+  # LINUX RUNNER (commented out - uncomment to use)
+  # ============================================================
+  # test-build-scan-linux:
+  #   runs-on: [self-hosted, Linux, X64]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #
+  #     - name: Setup Java
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         java-version: '17'
+  #         distribution: temurin
+  #         cache: maven
+  #
+  #     - name: Cache SonarQube package
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.sonar/cache
+  #         key: ${{ runner.os }}-sonar
+  #         restore-keys: ${{ runner.os }}-sonar
+  #
+  #     - name: Cache Maven
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.m2
+  #         key: ${{ runner.os }}-m2
+  #         restore-keys: ${{ runner.os }}-m2
+  #
+  #     - name: Build and Analyze
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #       # Linux uses backslash \ for multiline commands
+  #       run: |
+  #         mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  #           -Dsonar.projectKey=sree \
+  #           -Dsonar.projectName="springboot-demo" \
+  #           -Dsonar.host.url="http://localhost:9000" \
+  #           -Dsonar.login="${SONAR_TOKEN}"
+  #       working-directory: springboot-demo
+  #
+  #     - name: Check Quality Gate
+  #       id: qualitychecker
+  #       uses: sonarsource/sonarqube-quality-gate-action@v1.1.0
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         SONAR_HOST_URL: http://localhost:9000
+  #
+  #     - name: Deploy
+  #       if: steps.qualitychecker.conclusion == 'success'
+  #       run: echo "Deploying Application...."
+
+  # ============================================================
+  # WINDOWS RUNNER (active - currently enabled)
+  # ============================================================
+  test-build-scan-windows:
+    runs-on: [self-hosted, Windows, X64, windows]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: temurin
+          cache: maven
+
+      - name: Cache SonarQube package
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and Analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # Windows: use shell: cmd to avoid PowerShell stripping quotes
+        # Windows does NOT support backslash \ for multiline - keep command on single line
+        # Use %ENV_VAR% syntax (CMD style), NOT $env:VAR (PowerShell) or ${VAR} (Linux)
+        shell: cmd
+        run: mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=sree -Dsonar.projectName="springboot-demo" -Dsonar.host.url="http://localhost:9000" -Dsonar.login="%SONAR_TOKEN%"
+        working-directory: springboot-demo
+
+      - name: Check Quality Gate
+        id: qualitychecker
+        uses: sonarsource/sonarqube-quality-gate-action@v1.1.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: http://localhost:9000
+
+      - name: Deploy
+        if: steps.qualitychecker.conclusion == 'success'
+        shell: cmd
+        run: echo "Deploying Application...."
