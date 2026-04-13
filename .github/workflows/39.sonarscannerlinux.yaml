@@ -41,7 +41,7 @@ jobs:
           mvn -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey=sree \
             -Dsonar.projectName="springboot-demo" \
-            -Dsonar.host.url= ${SONAR_HOST_URL}\
+            -Dsonar.host.url="${SONAR_HOST_URL}" \
             -Dsonar.login="${SONAR_TOKEN}"
         working-directory: springboot-demo
 
