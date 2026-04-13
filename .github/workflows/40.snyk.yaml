@@ -34,7 +34,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
-        working-directory: springboot-demo
+          args: --file=springboot-demo/pom.xml
 
 
 
