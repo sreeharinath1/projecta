@@ -1,0 +1,12 @@
+name: b.push branch
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a script
+        run: echo "Iam triggered by event branch"
