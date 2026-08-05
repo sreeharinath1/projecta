@@ -1,4 +1,10 @@
 # Spring Boot Employee Manager – Sample Project
+<img width="1440" height="558" alt="image" src="https://github.com/user-attachments/assets/779ed379-f76a-4d69-a88e-01677631e663" />
+
+
+
+#👨‍💻 About Me
+Hello! I am a passionate on Tech. Let's connect through Pipeline #Devops
 
 A complete Spring Boot web application demonstrating:
 - Thymeleaf web UI (CRUD pages)
@@ -8,7 +14,17 @@ A complete Spring Boot web application demonstrating:
 - Unit Tests (Mockito + MockMvc)
 - Integration Tests (REST Assured + @DataJpaTest)
 
----
+---🎨 Version Architecture Guide
+This workspace features three distinct versions of the application, iterating on UI/UX design paradigms.
+
+1. 💡 emp-dir-v1 (Light & Clean Theme)
+Design Focus: Clean professional light mode with crisp corporate aesthetics, standard table layout, and subtle borders.
+Best for: Standard enterprise office setups preferring high-brightness corporate dashboards.
+2. 🌌 emp-dir-v2 (Dark Neon Mode)
+Design Focus: Deep space dark mode (#0b0f19) with glowing neon cyan, warning orange, and vibrant pink buttons.
+Best for: Engineering command centers and developer-focused environments.
+3. 🪟 emp-dir-v3 (Ultimate Dynamic Glassmorphism & Theme Switcher)
+Design Focus: Premium glassmorphic design featuring animated gradient backgrounds (@keyframes gradientBG), floating elements, 3D hover cards on the landing page (index.html), and a Persistent Floating Theme Switcher
 
 ## Project Structure
 
@@ -128,3 +144,8 @@ mvn verify
 | EmployeeApiIT                 | Integration | 10    |
 | EmployeeRepositoryIT          | Integration | 9     |
 | **Total**                     |             | **45**|
+
+## Built with ❤️ using Spring Boot & Thymeleaf 
+## Just for learning #DevOps #Java
+# Not for production usage   ---------------Any One can use this project
+                                                                        #SREE
