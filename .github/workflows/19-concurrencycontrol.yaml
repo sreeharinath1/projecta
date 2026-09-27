@@ -1,0 +1,20 @@
+name: s.concurrencycontrol
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Enter a Key"
+        type: choice
+        options:
+          - dev
+          - stage
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ci-${{github.ref}}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+      - run: sleep 30
+      - run: echo "sleep 30 sec done"

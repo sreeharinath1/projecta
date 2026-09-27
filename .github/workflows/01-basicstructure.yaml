@@ -1,0 +1,11 @@
+name: a.basicstructureflow
+on:
+ # push:
+  #  branches: [ main ]
+jobs:
+  build: # job name
+    runs-on: ubuntu-latest # runner types
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run a Script
+        run: echo "Hi GitHub Actions World"

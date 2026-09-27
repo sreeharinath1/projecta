@@ -1,0 +1,26 @@
+name: d.pullrequest
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - closed
+      - locked
+      - unlocked
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - synchronize
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+      - edited
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a Script
+        run: echo "Iam running"

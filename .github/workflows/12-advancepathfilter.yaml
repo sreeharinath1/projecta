@@ -1,0 +1,36 @@
+name: l.advancedpathfilter
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "enter a value"
+        type: choice
+        options:
+          - dev
+          - stage
+jobs:
+  detech-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            frontend:
+              - "frontend/**"
+            backend:
+              - "backend/**"
+    outputs:
+      frontend: ${{steps.filter.outputs.frontend}}
+      backend: ${{steps.filter.outputs.backend}}
+  build:
+    needs: detech-changes
+    if: needs.detech-changes.outputs.frontend == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "iam running"
+
+        # note use push only for realtime
+        # get proper result from push
+        # current and prev commit compare and works

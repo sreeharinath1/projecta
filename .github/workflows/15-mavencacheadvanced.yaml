@@ -1,0 +1,32 @@
+name: o.advancemavencache
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Enter a value"
+        type: choice
+        options:
+          - dev
+          - stage
+jobs:
+  gen-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [11, 17, 21]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{matrix.java-version}}
+      - name: advanced maven cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{runner.os}}-${{ hashFiles('**/pom.xml')}}
+          restore-keys: maven-${{runner.os}}-
+      - run: mvn test
+        working-directory: springboot-demo

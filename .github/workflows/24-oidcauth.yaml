@@ -1,0 +1,21 @@
+name: x.oidcauthaws
+on:
+  workflow_dispatch:
+permissions:
+  id-token: none    # REQUIRED for OIDC
+  contents: read     # Needed for checkout
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::748435451822:role/usergithub
+          aws-region: ap-south-1
+      - name: List EC2 instances
+        run: aws ec2 describe-instances --region ap-south-1
+
